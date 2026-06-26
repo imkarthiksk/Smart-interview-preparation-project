@@ -4,6 +4,8 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const resumeRoutes = require("./routes/resumeRoutes");
+
 
 // Load .env
 dotenv.config();
@@ -20,7 +22,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-
+app.use("/api/resume", resumeRoutes);
 // Test Route
 app.get("/", (req, res) => {
   res.send("Smart Interview Preparation Platform API Running 🚀");

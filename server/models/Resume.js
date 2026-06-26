@@ -2,18 +2,13 @@ const mongoose = require("mongoose");
 
 const resumeSchema = new mongoose.Schema(
   {
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
 
-    resumeUrl: {
-      type: String,
-      required: true,
-    },
-
-    publicId: {
+    resumePath: {
       type: String,
       required: true,
     },
