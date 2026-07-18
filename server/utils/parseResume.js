@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = require("pdf-parse");
+const pdf = require("pdf-parse");
 const parseResume = async (filePath) => {
 
     const dataBuffer = fs.readFileSync(filePath);

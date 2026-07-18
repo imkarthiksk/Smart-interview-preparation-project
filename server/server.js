@@ -1,14 +1,18 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const cors = require("cors");
-
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
-const resumeRoutes = require("./routes/resumeRoutes");
-
 
 // Load .env
 dotenv.config();
+
+const cors = require("cors");
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
+const resumeRoutes = require("./routes/resumeRoutes");
+const interviewRoutes = require("./routes/interviewRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+
+
 
 // Connect Database
 connectDB();
@@ -23,6 +27,24 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/resume", resumeRoutes);
+app.use("/api/interview", interviewRoutes);
+const companyInterviewRoutes = require("./routes/companyInterviewRoutes");
+const companyAnalysisRoutes = require("./routes/companyAnalysisRoutes");
+
+app.use(
+  "/api/company-interview",
+  companyInterviewRoutes
+);
+app.use(
+  "/api/company",
+  companyAnalysisRoutes
+);
+app.use(
+"/api/company-interview",
+companyInterviewRoutes
+);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/profile", profileRoutes);
 // Test Route
 app.get("/", (req, res) => {
   res.send("Smart Interview Preparation Platform API Running 🚀");

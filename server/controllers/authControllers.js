@@ -91,12 +91,17 @@ if (!isMatch) {
 );
 
 return res.status(200).json({
-    success: true,
-    message: "Login Successful",
-    token:token
+  success: true,
+  message: "Login Successful",
+  token,
+  user: {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+  },
 });
+}
 
-};
 const getProfile = async (req,res)=>{
 
     const userId = req.user.id;

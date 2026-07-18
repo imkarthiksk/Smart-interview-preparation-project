@@ -2,32 +2,79 @@ const mongoose = require("mongoose");
 
 const interviewSchema = new mongoose.Schema(
   {
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
 
-    domain: {
-      type: String,
-      required: true,
+    questions: {
+      type: [String],
+      default: [],
     },
 
-    difficulty: {
-      type: String,
-      enum: ["Easy", "Medium", "Hard"],
-      default: "Easy",
+    answers: {
+      type: [String],
+      default: [],
     },
 
-    questions: [
-      {
-        type: String,
-      },
-    ],
+  result: {
+
+    overallScore: {
+        type: Number,
+        default: 0,
+    },
+
+    technicalScore: {
+        type: Number,
+        default: 0,
+    },
+
+    communicationScore: {
+        type: Number,
+        default: 0,
+    },
+
+    confidenceScore: {
+        type: Number,
+        default: 0,
+    },
+
+    grammarScore: {
+        type: Number,
+        default: 0,
+    },
+
+    suggestions: {
+        type: [String],
+        default: [],
+    },
+
+    questionReview: [
+        {
+            question: String,
+
+            userAnswer: String,
+
+            expectedAnswer: String,
+
+            technicalScore: Number,
+
+            communicationScore: Number,
+
+            grammarScore: Number,
+
+            confidenceScore: Number,
+
+            strengths: [String],
+
+            weaknesses: [String]
+        }
+    ]
+
   },
-  {
-    timestamps: true,
-  }
-);
+  },
+  { timestamps: true }
+);  
 
 module.exports = mongoose.model("Interview", interviewSchema);
